@@ -1,17 +1,26 @@
 <template>
-  <div id="app">
-    <Header @filter="updateFilter" />
-    <div class="container" :class="{
-      headerIsFixed: fixedStatus.headerIsFixed
-    }">
-      <Home :filter="childData"/>
+    <div id="header">
+        <VueFixedHeader
+        @change="updateFixedStatus"
+        :threshold="propsData.threshold"
+        :headerClass="propsData.headerClass"
+        :fixedClass="propsData.fixedClass"
+        :hideScrollUp="propsData.hideScrollUp"
+        >
+        <nav>
+            <el-menu>
+                <el-row class="search-wrapper">
+                   <el-input placeholder="Search" prefix-icon="el-icon-search" v-model="filter"></el-input>
+                </el-row>
+            </el-menu>
+        </nav>
+        </VueFixedHeader>
     </div>
-  </div>
 </template>
 
 <script>
-import Home from './components/Home.vue';
-import Header from './components/Header.vue';
+import Vue from "vue";
+import VueFixedHeader from "vue-fixed-header";
 
 const createData = () => ({
   threshold: 0,
@@ -20,10 +29,9 @@ const createData = () => ({
   hideScrollUp: false
 });
 
-export default ({
+export default Vue.extend({
   components: {
-    Header,
-    Home
+    VueFixedHeader,
   },
   data() {
     return {
@@ -31,16 +39,18 @@ export default ({
         headerIsFixed: false
       },
       propsData: { ...createData() },
-      childData: "",
+      filter: '',
     };
   },
   methods: {
     updateFixedStatus(next) {
       this.fixedStatus.headerIsFixed = next;
-    },
-    updateFilter(variable) {
-      this.childData=variable;
-    },
+    }
+  },
+  watch: {
+    filter: function() {
+      this.$emit("filter", this.filter);
+    }
   }
 });
 </script>
@@ -79,33 +89,17 @@ body,
   text-align: center;
 }
 
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
 nav {
   display: flex;
-  width: 100vw;
   margin: 0;
-  padding: 0;
-  background: #fff;
-  border-bottom: 1px #e5e5e5;
-}
-
-.el-menu {
+  padding: 10px 0px !important;
   background-color: #5da5a4 !important;
 }
 
-nav.vue-fixed-header--isFixed {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 1000;
-}
-
-.container.headerIsFixed {
-  transform: translateY(56px) !important;
+.el-menu {
+    max-width: 1140px;
+    margin: 0 auto !important;
+    border: 0px !important;
 }
 
 .heading {
@@ -129,5 +123,10 @@ li {
   display: flex;
   justify-content: flex-end;
 }
+
+.search-wrapper {
+    max-width: 300px;
+}
+
 
 </style>
