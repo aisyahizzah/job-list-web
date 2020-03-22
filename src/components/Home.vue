@@ -1,23 +1,32 @@
 <template>
   <div>
-    <div>
-      <el-card>  
       <el-row>
-        <el-col v-bind:key="player" v-for="player in getPlayers" :xs="24" :sm="12" :md="8">
-          <el-card> 
-            <div> {{ player.name }} </div>
-            <div class="box__subtitle"> {{ player.sport }} </div>
-            <div class="box__subtitle"> {{ player.views }} views </div>
+
+        <el-col v-bind:key="job" v-for="job in getJobs">
+          <el-card class="job_list">
+            <div class="job_container">
+              <div>
+                <img class="company_logo" src="../assets/logo.png">
+              </div>
+              <div>
+                <div class="job_position"> {{ job.position }} </div>
+                <div class="company_name"> {{ job.name }} </div>
+                <div class="job_location"> {{ job.location }} </div>
+                <div class="job_info"> {{ job.type }} · {{ job.salary }} </div>
+              </div>
+              <div>
+                <div class=job_timestamp>Posted {{ job.posted }} days ago</div>
+              </div>
+            </div>
           </el-card>
         </el-col>
 
-        <el-col v-if="getPlayers.length === 0" :xs="24" :sm="24" :md="24">
-          <div class="box box__empty"> No Match Found</div>
+        <el-col v-if="getJobs.length === 0">
+          <div> No Match Found</div>
         </el-col>
 
       </el-row> <!-- results -->
-      </el-card>
-    </div>
+
  </div> <!-- container -->
 
 </template>
@@ -32,29 +41,27 @@ export default {
   },
   data: function() {
     return { 
-      players: [
-        { name: 'Charles Wilson', sport: 'Baseball', views: 312},
-        { name: 'Tony Domo', sport: 'Football', views: 23121 },
-        { name: 'Rump Baker', sport: 'Basketball', views: 231},
-        { name: 'Brad Pitt', sport: 'Acting', views: 443},
-        { name: 'Kermit the Frog', sport: 'Frogball', views: 403},
-        { name: 'Taylor Swift', sport: 'Singing', views: 8843}
+      jobs: [
+        { position: 'Software Engineer', name: 'MyCompany', location: "Jakarta, Indonesia", type: "Full-time", salary: "2,500,000 IDR/month", posted:2},
+        { position: 'Front-end Engineer', name: 'HelloWorld', location: "Bandung, Indonesia", type: "Part-time", salary: "3,500,000 - 4,000,000 IDR/month", posted:3},
+        { position: 'Data Analyst', name: 'Strawberry', location: "Bandung, Indonesia", type: "Full-time", salary: "2,500,000 - 3,500,000 IDR/month", posted:5},
+        { position: 'AI Engineer', name: 'Panda', location: "Jakarta, Indonesia", type: "Part-time", salary: "3,500,000 - 4,500,000 IDR/month", posted:10},
       ]
     }
   },
   computed: {
-    getPlayers() {
+    getJobs() {
 
-      var players = this.players.filter(player => {
-        return player.name.toLowerCase().includes(this.filter.toLowerCase());
+      var jobs = this.jobs.filter(job => {
+        return job.position.toLowerCase().includes(this.filter.toLowerCase());
       });
 
       if (this.sort == 'views') {
-        return players.sort(function (a, b) {
+        return jobs.sort(function (a, b) {
           return b.views - a.views;
         });
       } else {
-        return players;
+        return jobs;
       }
 
     } 
@@ -84,6 +91,40 @@ export default {
   padding: 5px;
   margin: 10px 0px 10px 0px;
   background-color: #ade0e0;
+}
+
+.job_list{
+  text-align: left !important;
+}
+
+.job_container{
+  display: flex;
+}
+
+.company_name{
+  color: #7C7C7C;
+  font-size: 15px;
+}
+
+.company_logo{
+  height: 50px;
+  width: 50px;
+}
+
+.job_position{
+  color: #64BABB;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.job_location{
+  color: #7C7C7C;
+  font-size: 13px;
+}
+
+.job_info{
+  color: #9C9B9B;
+  font-size: 13px;
 }
 
 </style>

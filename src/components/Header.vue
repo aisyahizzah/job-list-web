@@ -9,6 +9,9 @@
         >
         <nav>
             <el-menu>
+                <el-row>
+                    <img class="logo" src="../assets/logo.png"/>
+                </el-row>
                 <el-row class="search-wrapper">
                    <el-input placeholder="Search" prefix-icon="el-icon-search" v-model="filter"></el-input>
                 </el-row>
@@ -126,7 +129,14 @@ li {
 
 .search-wrapper {
     max-width: 300px;
+    padding-left: 10px !important;
 }
 
+.logo {
+  display: block;
+  margin: auto auto;
+  width: 40px;
+  height: 40px;
+}
 
 </style>
