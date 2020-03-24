@@ -8,14 +8,14 @@
         :hideScrollUp="propsData.hideScrollUp"
         >
         <nav>
-            <el-menu>
+            <div class="menu">
                 <el-row>
                     <img class="logo" src="../assets/logo.png"/>
                 </el-row>
                 <el-row class="search-wrapper">
                    <el-input class="search_bar" placeholder="Search position or company" prefix-icon="el-icon-search" v-model="filter"></el-input>
                 </el-row>
-            </el-menu>
+            </div>
         </nav>
         </VueFixedHeader>
     </div>
@@ -91,7 +91,7 @@ body,
 }
 
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Hind", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -105,27 +105,16 @@ nav {
   background-color: #5da5a4 !important;
 }
 
-.el-menu {
-    max-width: 1000px;
-    margin: 0 auto !important;
-    border: 0px !important;
+.menu {
+    display: flex;
+    justify-content: flex-start;
+    width: 1000px;
+    margin: 0 auto;
 }
 
 .heading {
   margin-top: 0;
   padding-top: 0;
-}
-
-ul {
-  flex: 1;
-  display: flex;
-  align-content: stretch;
-  justify-content: flex-start;
-  list-style: none;
-}
-
-li {
-  padding: 8px 16px;
 }
 
 .justify-right {

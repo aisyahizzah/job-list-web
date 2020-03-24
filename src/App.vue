@@ -116,11 +116,9 @@ nav.vue-fixed-header--isFixed {
 }
 
 ul {
-  flex: 1;
-  display: flex;
-  align-content: stretch;
-  justify-content: flex-start;
+  display: inline;
   list-style: none;
+  font-family: "Hind", sans-serif;
 }
 
 li {
