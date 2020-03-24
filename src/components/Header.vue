@@ -13,7 +13,7 @@
                     <img class="logo" src="../assets/logo.png"/>
                 </el-row>
                 <el-row class="search-wrapper">
-                   <el-input placeholder="Search" prefix-icon="el-icon-search" v-model="filter"></el-input>
+                   <el-input class="search_bar" placeholder="Search position or company" prefix-icon="el-icon-search" v-model="filter"></el-input>
                 </el-row>
             </el-menu>
         </nav>
@@ -137,6 +137,10 @@ li {
   margin: auto auto;
   width: 40px;
   height: 40px;
+}
+
+.search_bar{
+  width: 250px !important;
 }
 
 </style>

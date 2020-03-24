@@ -47,10 +47,10 @@ export default {
   data: function() {
     return { 
       jobs: [
-        { photo: require('../assets/MyCompany.png'), position: 'Software Engineer', name: 'MyCompany', location: "Jakarta, Indonesia", type: "Full-time", salary: "2,500,000 IDR/month", posted:2, tag: ["Intern","Fullstack","Javascript","PHP"]},
-        { photo: require('../assets/HelloWorld.png'), position: 'Front-end Engineer', name: 'HelloWorld', location: "Bandung, Indonesia", type: "Part-time", salary: "3,500,000 - 4,000,000 IDR/month", posted:3, tag: ["Intern","Frontend","Java"]},
-        { photo: require('../assets/Puzzles.png'), position: 'Data Analyst', name: 'Puzzles', location: "Bandung, Indonesia", type: "Full-time", salary: "2,500,000 - 3,500,000 IDR/month", posted:5, tag: ["Junior","Data","NoSQL"]},
-        { photo: require('../assets/Panda.png'), position: 'AI Engineer', name: 'Panda', location: "Jakarta, Indonesia", type: "Part-time", salary: "3,500,000 - 4,500,000 IDR/month", posted:10, tag: ["Senior","Python"]},
+        { photo: require('../assets/MyCompany.png'), position: 'Software Engineer', name: 'MyCompany', location: "Jakarta, Indonesia", type: "Fullbtime", salary: "2,500,000 IDR/month", posted:2, tag: ["Intern","Fullstack","Javascript","PHP"]},
+        { photo: require('../assets/HelloWorld.png'), position: 'Frontend Engineer', name: 'HelloWorld', location: "Bandung, Indonesia", type: "Part time", salary: "3,500,000 - 4,000,000 IDR/month", posted:3, tag: ["Intern","Frontend","Java"]},
+        { photo: require('../assets/Puzzles.png'), position: 'Data Analyst', name: 'Puzzles', location: "Bandung, Indonesia", type: "Full time", salary: "2,500,000 - 3,500,000 IDR/month", posted:5, tag: ["Junior","Data","NoSQL"]},
+        { photo: require('../assets/Panda.png'), position: 'AI Engineer', name: 'Panda', location: "Jakarta, Indonesia", type: "Part time", salary: "3,500,000 - 4,500,000 IDR/month", posted:10, tag: ["Senior","Python"]},
       ]
     }
   },
@@ -58,7 +58,16 @@ export default {
     getJobs() {
 
       var jobs = this.jobs.filter(job => {
-        return job.position.toLowerCase().includes(this.filter.toLowerCase());
+        var lower_case_filter = this.filter.toLowerCase()
+        const regex = RegExp("^[A-Za-z0-9 ]*" + lower_case_filter + "[A-Za-z0-9 ]*$");
+        const match_pos = regex.test(job.position.toLowerCase());
+        const match_com = regex.test(job.name.toLowerCase());
+        if ((match_pos) || (match_com)){
+          return job;
+        }
+        if (this.filter == ''){
+          return job;
+        }
       });
 
       if (this.sort == 'views') {
