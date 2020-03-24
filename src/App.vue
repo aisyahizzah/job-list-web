@@ -80,7 +80,7 @@ body,
 }
 
 .container {
-  max-width: 1140px;
+  max-width: 1000px;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;

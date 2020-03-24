@@ -2,17 +2,19 @@
   <div>
       <el-row>
 
-        <el-col v-bind:key="job" v-for="job in getJobs">
+        <el-col class="job_card" v-bind:key="job" v-for="job in getJobs">
           <el-card class="job_list">
             <div class="job_container">
-              <div>
-                <img class="company_logo" src="../assets/logo.png">
-              </div>
-              <div class="job_info">
-                <div class="job_position"> {{ job.position }} </div>
-                <div class="company_name"> {{ job.name }} </div>
-                <div class="job_location"> {{ job.location }} </div>
-                <div class="job_detail"> {{ job.type }} · {{ job.salary }} </div>
+              <div class="nested_flex">
+                <div class="logo_container">
+                  <img class="company_logo" :src="job.photo">
+                </div>
+                <div class="job_info">
+                  <div class="job_position"> {{ job.position }} </div>
+                  <div class="company_name"> {{ job.name }} </div>
+                  <div class="job_location"> {{ job.location }} </div>
+                  <div class="job_detail"> {{ job.type }} · {{ job.salary }} </div>
+                </div>
               </div>
               <div>
                 <div class=job_timestamp>Posted {{ job.posted }} days ago</div>
@@ -45,10 +47,10 @@ export default {
   data: function() {
     return { 
       jobs: [
-        { position: 'Software Engineer', name: 'MyCompany', location: "Jakarta, Indonesia", type: "Full-time", salary: "2,500,000 IDR/month", posted:2, tag: ["Intern","Fullstack","Javascript","PHP"]},
-        { position: 'Front-end Engineer', name: 'HelloWorld', location: "Bandung, Indonesia", type: "Part-time", salary: "3,500,000 - 4,000,000 IDR/month", posted:3, tag: ["Intern","Frontend","Java"]},
-        { position: 'Data Analyst', name: 'Strawberry', location: "Bandung, Indonesia", type: "Full-time", salary: "2,500,000 - 3,500,000 IDR/month", posted:5, tag: ["Junior","Data","NoSQL"]},
-        { position: 'AI Engineer', name: 'Panda', location: "Jakarta, Indonesia", type: "Part-time", salary: "3,500,000 - 4,500,000 IDR/month", posted:10, tag: ["Senior","Python"]},
+        { photo: require('../assets/MyCompany.png'), position: 'Software Engineer', name: 'MyCompany', location: "Jakarta, Indonesia", type: "Full-time", salary: "2,500,000 IDR/month", posted:2, tag: ["Intern","Fullstack","Javascript","PHP"]},
+        { photo: require('../assets/HelloWorld.png'), position: 'Front-end Engineer', name: 'HelloWorld', location: "Bandung, Indonesia", type: "Part-time", salary: "3,500,000 - 4,000,000 IDR/month", posted:3, tag: ["Intern","Frontend","Java"]},
+        { photo: require('../assets/Puzzles.png'), position: 'Data Analyst', name: 'Puzzles', location: "Bandung, Indonesia", type: "Full-time", salary: "2,500,000 - 3,500,000 IDR/month", posted:5, tag: ["Junior","Data","NoSQL"]},
+        { photo: require('../assets/Panda.png'), position: 'AI Engineer', name: 'Panda', location: "Jakarta, Indonesia", type: "Part-time", salary: "3,500,000 - 4,500,000 IDR/month", posted:10, tag: ["Senior","Python"]},
       ]
     }
   },
@@ -96,6 +98,10 @@ export default {
   background-color: #ade0e0;
 }
 
+.job_card{
+  margin-bottom: 5px;
+}
+
 .job_list{
   text-align: left !important;
 }
@@ -105,8 +111,9 @@ export default {
   justify-content: space-between;
 }
 
-.job_info{
-  flex-basis: 800px;
+.nested_flex{
+  display: flex;
+  position: relative;
 }
 
 .company_name{
@@ -115,8 +122,21 @@ export default {
 }
 
 .company_logo{
+  display: block;
+  margin: auto 0;
   height: 50px;
   width: 50px;
+}
+
+.logo_container{
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.job_info{
+  margin-left: 70px;
 }
 
 .job_position{
