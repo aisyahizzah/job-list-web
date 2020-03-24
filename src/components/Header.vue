@@ -43,6 +43,12 @@ export default Vue.extend({
       },
       propsData: { ...createData() },
       filter: '',
+      sort: '',
+      value: [],
+      options: [
+      { label: 'Default', value: 'none' },
+      { label: 'Timestamp', value: 'Timestamp' },
+      { label: 'Salary', value: 'Salary' }],
     };
   },
   methods: {

@@ -1,5 +1,47 @@
 <template>
   <div>
+      <div class="filter_container">
+        <el-select style="width: 100px !important" v-model="value" multiple placeholder="Sort by">
+          <el-option
+              v-bind:key="item.value"
+              v-for="item in options"
+              :label="item.label"
+              :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select style="width: 110px !important" v-model="value" multiple placeholder="Location">
+          <el-option
+              v-bind:key="item.value"
+              v-for="item in options"
+              :label="item.label"
+              :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select style="width: 110px !important" v-model="value" multiple placeholder="Job Type">
+          <el-option
+              v-bind:key="item.value"
+              v-for="item in options"
+              :label="item.label"
+              :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select style="width: 160px !important" v-model="value" multiple placeholder="Experience Level">
+          <el-option
+              v-bind:key="item.value"
+              v-for="item in options"
+              :label="item.label"
+              :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select style="width: 205px !important" v-model="value" multiple placeholder="Programming Language">
+          <el-option
+              v-bind:key="item.value"
+              v-for="item in options"
+              :label="item.label"
+              :value="item.value">
+          </el-option>
+        </el-select>
+      </div>
       <el-row>
 
         <el-col class="job_card" v-bind:key="job" v-for="job in getJobs">
@@ -51,7 +93,13 @@ export default {
         { photo: require('../assets/HelloWorld.png'), position: 'Frontend Engineer', name: 'HelloWorld', location: "Bandung, Indonesia", type: "Part time", salary: "3,500,000 - 4,000,000 IDR/month", posted:3, tag: ["Intern","Frontend","Java"]},
         { photo: require('../assets/Puzzles.png'), position: 'Data Analyst', name: 'Puzzles', location: "Bandung, Indonesia", type: "Full time", salary: "2,500,000 - 3,500,000 IDR/month", posted:5, tag: ["Junior","Data","NoSQL"]},
         { photo: require('../assets/Panda.png'), position: 'AI Engineer', name: 'Panda', location: "Jakarta, Indonesia", type: "Part time", salary: "3,500,000 - 4,500,000 IDR/month", posted:10, tag: ["Senior","Python"]},
-      ]
+      ],
+      sort: '',
+      value: [],
+      options: [
+      { label: 'Default', value: 'none' },
+      { label: 'Timestamp', value: 'Timestamp' },
+      { label: 'Salary', value: 'Salary' }],
     }
   },
   computed: {
@@ -87,6 +135,10 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
+.input.style{
+  height: 30px !important;
+}
+
 .search-wrapper {
   margin: 10px 0;
 }
@@ -97,14 +149,20 @@ export default {
 }
 
 .el-select {
-  width: 100%;
+  margin: 20px 5px;
+}
+
+.filter_container{
+  background-color: white;
+  margin-bottom: 15px;
+  padding-left: 50px;
+  display: flex;
 }
 
 .filter {
-  width: 1110;
-  padding: 5px;
-  margin: 10px 0px 10px 0px;
-  background-color: #ade0e0;
+  width: 70;
+  padding: 2px;
+  margin: 0px 5px 0px 5px;
 }
 
 .job_card{
