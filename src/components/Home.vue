@@ -226,11 +226,6 @@ export default {
   margin: 10px 0;
 }
 
-.col-space {
-  content: '&nbsp;';
-  @media screen and (max-width: 767px) { display: none; }
-}
-
 .el-select {
   margin: 5px 5px;
 }
@@ -238,9 +233,7 @@ export default {
 .filter_container{
   background-color: white;
   margin-bottom: 15px;
-  padding-left: 50px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 40px 20px 40px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -249,6 +242,13 @@ export default {
   width: 70;
   padding: 2px;
   margin: 0px 5px 0px 5px;
+}
+
+@media screen and (max-width: 768px) { 
+  .filter_container{
+    padding-left: 5%;
+    padding-right: 5%;
+  }  
 }
 
 .job_card{

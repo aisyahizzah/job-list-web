@@ -112,6 +112,12 @@ nav {
     margin: 0 auto;
 }
 
+@media screen and (max-width: 768px) { 
+     .menu{
+        max-width: 90%;
+      }
+}
+
 .heading {
   margin-top: 0;
   padding-top: 0;

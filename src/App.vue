@@ -86,6 +86,12 @@ body,
   margin-right: auto;
 }
 
+@media screen and (max-width: 768px) { 
+  .container{
+    max-width: 90%;
+  }
+}
+
 nav {
   display: flex;
   width: 100vw;
