@@ -89,7 +89,7 @@ export default {
   data: function() {
     return { 
       jobs: [
-        { photo: require('../assets/MyCompany.png'), position: 'Software Engineer', name: 'MyCompany', location: "Jakarta, Indonesia", type: "Fullbtime", salary: "2500000 - 3500000 IDR/month", posted:2, tag: ["Intern","Fullstack","Javascript","PHP"]},
+        { photo: require('../assets/MyCompany.png'), position: 'Software Engineer', name: 'MyCompany', location: "Jakarta, Indonesia", type: "Full time", salary: "2500000 - 3500000 IDR/month", posted:2, tag: ["Intern","Fullstack","Javascript","PHP"]},
         { photo: require('../assets/HelloWorld.png'), position: 'Frontend Engineer', name: 'HelloWorld', location: "Bandung, Indonesia", type: "Part time", salary: "4000000 - 4500000 IDR/month", posted:3, tag: ["Intern","Frontend","Java"]},
         { photo: require('../assets/Puzzles.png'), position: 'Data Analyst', name: 'Puzzles', location: "Bandung, Indonesia", type: "Full time", salary: "2500000 - 3000000 IDR/month", posted:5, tag: ["Junior","Data","NoSQL"]},
         { photo: require('../assets/Panda.png'), position: 'AI Engineer', name: 'Panda', location: "Jakarta, Indonesia", type: "Part time", salary: "3500000 - 4000000 IDR/month", posted:10, tag: ["Senior","Python"]},
@@ -141,7 +141,33 @@ export default {
           return job;
         }
       })
+
+      // location 
+      if (this.value_location != ""){
+         jobs = jobs.filter(job => {
+           for (const loc of this.value_location){
+             const regex_loc = RegExp(loc);
+             const match_loc = regex_loc.test(job.location);
+             if (match_loc){
+               return job;
+             }
+           }
+         })
+      }
       
+      // Job type 
+      if (this.value_type != ""){
+         jobs = jobs.filter(job => {
+           for (const type of this.value_type){
+             const regex_type = RegExp(type);
+             const match_type = regex_type.test(job.type);
+             if (match_type){
+               return job;
+             }
+           }
+         })
+      }
+
       // sort
       if (this.hint_sort == 'Time') {
         return jobs.sort(function (a, b) {
