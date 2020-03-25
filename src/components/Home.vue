@@ -222,10 +222,6 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-.input.style{
-  height: 30px !important;
-}
-
 .search-wrapper {
   margin: 10px 0;
 }
@@ -236,14 +232,17 @@ export default {
 }
 
 .el-select {
-  margin: 20px 5px;
+  margin: 5px 5px;
 }
 
 .filter_container{
   background-color: white;
   margin-bottom: 15px;
   padding-left: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .filter {
@@ -263,6 +262,7 @@ export default {
 .job_container{
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .nested_flex{
