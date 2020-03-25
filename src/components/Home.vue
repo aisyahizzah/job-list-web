@@ -168,6 +168,36 @@ export default {
          })
       }
 
+      // Job Level 
+      if (this.value_level != ""){
+         jobs = jobs.filter(job => {
+           for (const level of this.value_level){
+             const regex_level = RegExp(level);
+             for (const tag1 of job.tag){
+                const match_level = regex_level.test(tag1);
+                if (match_level){
+                  return job;
+                }
+             }
+           }
+         })
+      }
+
+      // Job Prog Language 
+      if (this.value_language != ""){
+         jobs = jobs.filter(job => {
+           for (const language of this.value_language){
+             const regex_language = RegExp(language);
+             for (const tag2 of job.tag){
+                const match_language = regex_language.test(tag2);
+                if (match_language){
+                  return job;
+                }
+             }
+           }
+         })
+      }
+
       // sort
       if (this.hint_sort == 'Time') {
         return jobs.sort(function (a, b) {
