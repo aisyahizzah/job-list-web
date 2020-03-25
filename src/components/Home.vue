@@ -244,13 +244,6 @@ export default {
   margin: 0px 5px 0px 5px;
 }
 
-@media screen and (max-width: 768px) { 
-  .filter_container{
-    padding-left: 5%;
-    padding-right: 5%;
-  }  
-}
-
 .job_card{
   margin-bottom: 5px;
 }
@@ -262,7 +255,6 @@ export default {
 .job_container{
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
 }
 
 .nested_flex{
@@ -328,6 +320,27 @@ export default {
   color: #5DA5A4;
   font-size: 15px;
   font-weight: 600;
+}
+
+@media screen and (max-width: 768px) { 
+  .filter_container{
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .job_container{
+    flex-direction: column;
+  }  
+  .job_tag{
+    margin-left: 0px;
+    margin-right: 20px;
+  }
+  .tags_container{
+    justify-content: flex-start;
+  }
+  .job_timestamp{
+    text-align: left;
+    margin-top: 15px;
+  }
 }
 
 </style>
