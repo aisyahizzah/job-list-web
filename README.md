@@ -10,7 +10,7 @@ This project is built used Vue.js framework. There are several reason why I choo
 
 To run the web site, clone the repository and the following steps :
 
-## Project setup
+### Project setup
 ```
 npm install
 ```
